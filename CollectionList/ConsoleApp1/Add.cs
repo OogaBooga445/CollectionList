@@ -1,5 +1,3 @@
-using System;
-
 namespace connect
 {
     
@@ -18,7 +16,7 @@ class Adding {
             using StreamWriter writer = new StreamWriter(filePath, true);
             foreach (string value in data)
             {
-                writer.Write(value + ",");
+                writer.Write(value + ", ");
             }
             writer.WriteLine(); // Move to the next line
             Console.WriteLine("Dati saglabāti");
