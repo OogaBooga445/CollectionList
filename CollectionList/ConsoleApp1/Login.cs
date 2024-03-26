@@ -1,5 +1,3 @@
-using System;
-
 namespace connect
 {
     class Log_in
@@ -15,6 +13,7 @@ namespace connect
             while (Registry.userId != ConfirmUserId && Registry.password != ConfirmPassword || Registry.userId == ConfirmUserId && Registry.password != ConfirmPassword || Registry.userId != ConfirmUserId && Registry.password == ConfirmPassword)
             {
                 Console.WriteLine("Nepareizi ievadīti dati, Mēģini vēlreiz!");
+                Console.WriteLine();
                 Console.WriteLine();
                 Console.WriteLine("Ievadi ID: ");
                 ConfirmUserId = Console.ReadLine();

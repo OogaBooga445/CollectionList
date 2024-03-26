@@ -1,29 +1,53 @@
-namespace connect 
+namespace connect
 {
     class Add
     {
-        public static void WriteToCsv(string filePath)
+        public static void CreateAndDisplayArray()
         {
-            // Create the jagged array
-            int[][] data = {
-                [1, 2, 3],
-                [4, 5, 6],
-                [7, 8, 9]
-            };
+            Console.WriteLine("Enter the number of rows:");
+            int rows = int.Parse(Console.ReadLine());
 
-            // Specify the path for the CSV file
-            filePath = "data.csv";
+            Console.WriteLine("Enter the number of columns:");
+            int columns = int.Parse(Console.ReadLine());
+
+            string[,] array = new string[rows, columns];
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    Console.Write($"Enter value for element at position [{i},{j}]: ");
+                    array[i, j] = Console.ReadLine();
+                }
+            }
+
+            Console.WriteLine("\nArray:");
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write(array[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
 
             // Write data to CSV file
+            string filePath = "data.csv";
+            WriteToCsv(array, filePath);
+            Console.WriteLine("Data has been written to CSV file.");
+        }
+
+        private static void WriteToCsv(string[,] data, string filePath)
+        {
             using (StreamWriter writer = new StreamWriter(filePath))
             {
-                foreach (int[] row in data)
+                for (int i = 0; i < data.GetLength(0); i++)
                 {
-                    for (int i = 0; i < row.Length; i++)
+                    for (int j = 0; j < data.GetLength(1); j++)
                     {
-                        writer.Write(row[i]);
+                        writer.Write(data[i, j]);
 
-                        if (i < row.Length - 1)
+                        if (j < data.GetLength(1) - 1)
                         {
                             writer.Write(",");
                         }
@@ -31,8 +55,6 @@ namespace connect
                     writer.WriteLine();
                 }
             }
-
-            Console.WriteLine("Data has been written to CSV file.");
         }
     }
 }
