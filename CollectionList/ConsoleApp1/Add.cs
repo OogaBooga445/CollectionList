@@ -1,25 +1,38 @@
-namespace connect
+namespace connect 
 {
-    
+    class Add
+    {
+        public static void WriteToCsv(string filePath)
+        {
+            // Create the jagged array
+            int[][] data = {
+                [1, 2, 3],
+                [4, 5, 6],
+                [7, 8, 9]
+            };
 
-class Adding {
+            // Specify the path for the CSV file
+            filePath = "data.csv";
 
-
-        public static void Add() {
-
-            string filePath = "data.csv";
-
-            // Data to write to the CSV file
-            string[] data = { "John", "Doe", "30" };
-
-            // Write to the CSV file
-            using StreamWriter writer = new StreamWriter(filePath, true);
-            foreach (string value in data)
+            // Write data to CSV file
+            using (StreamWriter writer = new StreamWriter(filePath))
             {
-                writer.Write(value + ", ");
+                foreach (int[] row in data)
+                {
+                    for (int i = 0; i < row.Length; i++)
+                    {
+                        writer.Write(row[i]);
+
+                        if (i < row.Length - 1)
+                        {
+                            writer.Write(",");
+                        }
+                    }
+                    writer.WriteLine();
+                }
             }
-            writer.WriteLine(); // Move to the next line
-            Console.WriteLine("Dati saglabāti");
+
+            Console.WriteLine("Data has been written to CSV file.");
         }
     }
 }
