@@ -6,9 +6,9 @@
 
       Add.CreateAndDisplayArray();
       Reader.Read();
-      Registry.Register();
-      Log_in.Login();
-
+      // Registry.Register();
+      // Log_in.Login();
+      Editor.Edit();
     } 
   }
 }
