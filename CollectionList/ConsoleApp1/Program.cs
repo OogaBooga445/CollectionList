@@ -4,10 +4,10 @@
 
     public static void Main(string[] args) {
 
+      // Log_in.Login();
+      // Registry.Register();
       Add.CreateAndDisplayArray();
       Reader.Read();
-      // Registry.Register();
-      // Log_in.Login();
       Editor.Edit();
     } 
   }
