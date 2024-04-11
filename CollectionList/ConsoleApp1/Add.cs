@@ -21,16 +21,6 @@ namespace connect
                 }
             }
 
-            Console.WriteLine("\nArray:");
-            for (int i = 0; i < array.GetLength(0); i++)
-            {
-                for (int j = 0; j < array.GetLength(1); j++)
-                {
-                    Console.Write(array[i, j] + "\t");
-                }
-                Console.WriteLine();
-            }
-
             // Write data to CSV file
             string filePath = "data.csv";
             WriteToCsv(array, filePath);
