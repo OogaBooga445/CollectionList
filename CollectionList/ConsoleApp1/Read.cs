@@ -18,6 +18,6 @@ class Reader {
               }
               Console.WriteLine();
           }
-    }
+        }
     }
 }
