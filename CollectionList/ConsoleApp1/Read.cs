@@ -5,7 +5,16 @@ class Reader {
 
      string filePath = "data.csv";
 
-          using StreamReader reader = new StreamReader(filePath);
+    using StreamReader reader = new StreamReader(filePath);
+    Console.WriteLine(@"
+
+     _       __      __       __    __    _      __ 
+    | |     / /___ _/ /______/ /_  / /   (_)____/ /_
+    | | /| / / __ `/ __/ ___/ __ \/ /   / / ___/ __/
+    | |/ |/ / /_/ / /_/ /__/ / / / /___/ (__  ) /_  
+    |__/|__/\__,_/\__/\___/_/ /_/_____/_/____/\__/  
+            ");
+            Console.WriteLine();
           while (!reader.EndOfStream)
           {
               string line = reader.ReadLine();

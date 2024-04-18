@@ -6,11 +6,11 @@ namespace connect
   class Program {
 
     public static void Main(string[] args) {
+      string filePath = "data.csv";
 
-       Registry.Register();
-       Log_in.Login();
+      //  Registry.Register();
+      //  Log_in.Login();
       // Editor.Edit();
-      // string filePath = "data.csv";
 
       // bool ascendingOrder = false; // Change this to true or false as needed
             
@@ -18,9 +18,9 @@ namespace connect
       // Console.WriteLine($"CSV file sorted in {(ascendingOrder ? "ascending" : "descending")} order by the second column.");
 
 
-      // string filePath = "data.csv";
-      // Add.AddRecord(filePath);
-      // Reader.Read();
+//      Add.AddRecord(filePath);
+      Reader.Read();
+      // Remove.RemoveRecord(filePath);
 
 
     } 

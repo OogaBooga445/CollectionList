@@ -7,7 +7,23 @@ namespace connect
     {
         public static void AddRecord(string filePath)
         {
-            Console.WriteLine("Enter data to add to CSV (comma-separated):");
+            string type = "";
+            Console.WriteLine("Enter Type (Series or Movie):");
+            type = Console.ReadLine();
+            if (type.ToLower() == "series")
+            {
+                Console.WriteLine("Enter data (Title, Type(Series or Movie), Episode amount, Episodes watched, Genre, Release date, Rating, Status(Planned,Watching,Finished,On-Hold))(comma-separated):");
+            }
+            else if (type.ToLower() == "movie")
+            {
+                Console.WriteLine("Enter data (Title, Type(Series or Movie), Movie length, Time watched, Genre, Release date, Rating, Status(Planned,Watching,Finished,On-Hold))(comma-separated):");
+            }
+            else
+            {
+                Console.WriteLine("Invalid type entered. Please enter either 'Series' or 'Movie'.");
+                return;
+            }
+
             string input = Console.ReadLine();
 
             // Splitting the input by comma to get individual values
