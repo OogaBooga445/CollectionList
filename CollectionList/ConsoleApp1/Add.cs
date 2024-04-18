@@ -1,50 +1,76 @@
+using System;
+using System.IO;
+
 namespace connect
 {
     class Add
     {
-        public static void CreateAndDisplayArray()
+        public static void AddRecord(string filePath)
         {
-            Console.WriteLine("Enter the number of rows:");
-            int rows = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter data to add to CSV (comma-separated):");
+            string input = Console.ReadLine();
 
-            Console.WriteLine("Enter the number of columns:");
-            int columns = int.Parse(Console.ReadLine());
+            // Splitting the input by comma to get individual values
+            string[] values = input.Split(',');
 
-            string[,] array = new string[rows, columns];
+            // Check if the file already exists
+            bool fileExists = File.Exists(filePath);
 
-            for (int i = 0; i < rows; i++)
+            // Open the CSV file for appending data
+            using (StreamWriter writer = new StreamWriter(filePath, true))
             {
-                for (int j = 0; j < columns; j++)
+                // If file doesn't exist or it's a new file, start from the first row
+                if (!fileExists || new FileInfo(filePath).Length == 0)
                 {
-                    Console.Write($"Enter value for element at position [{i},{j}]: ");
-                    array[i, j] = Console.ReadLine();
-                }
-            }
-
-            // Write data to CSV file
-            string filePath = "data.csv";
-            WriteToCsv(array, filePath);
-            Console.WriteLine("Data has been written to CSV file.");
-        }
-
-        private static void WriteToCsv(string[,] data, string filePath)
-        {
-            using (StreamWriter writer = new StreamWriter(filePath))
-            {
-                for (int i = 0; i < data.GetLength(0); i++)
-                {
-                    for (int j = 0; j < data.GetLength(1); j++)
+                    // Writing the values to the CSV file
+                    for (int i = 0; i < values.Length; i++)
                     {
-                        writer.Write(data[i, j]);
+                        // If the value contains comma, enclose it within double quotes
+                        if (values[i].Contains(","))
+                        {
+                            writer.Write("\"" + values[i] + "\"");
+                        }
+                        else
+                        {
+                            writer.Write(values[i]);
+                        }
 
-                        if (j < data.GetLength(1) - 1)
+                        // Add comma if not last value
+                        if (i < values.Length - 1)
                         {
                             writer.Write(",");
                         }
                     }
+                    writer.WriteLine(); // Move to the next line for the next record
+                }
+                else // Otherwise, start from the second row
+                {
+                    // Write a newline to move to the next row
                     writer.WriteLine();
+                    // Writing the values to the CSV file
+                    for (int i = 0; i < values.Length; i++)
+                    {
+                        // If the value contains comma, enclose it within double quotes
+                        if (values[i].Contains(","))
+                        {
+                            writer.Write("\"" + values[i] + "\"");
+                        }
+                        else
+                        {
+                            writer.Write(values[i]);
+                        }
+
+                        // Add comma if not last value
+                        if (i < values.Length - 1)
+                        {
+                            writer.Write(",");
+                        }
+                    }
+                    writer.WriteLine(); // Move to the next line for the next record
                 }
             }
+
+            Console.WriteLine("Record added successfully.");
         }
     }
 }
