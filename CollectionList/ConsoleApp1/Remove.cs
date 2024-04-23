@@ -55,7 +55,7 @@ namespace connect
             File.Delete(filePath);
             File.Move(tempFile, filePath);
 
-            Console.WriteLine("Record(s) removed successfully.");
+            Console.WriteLine("Record removed successfully.");
         }
     }
 }

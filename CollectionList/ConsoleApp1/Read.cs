@@ -4,8 +4,9 @@ class Reader {
     public static void Read() {
 
      string filePath = "data.csv";
-
+    
     using StreamReader reader = new StreamReader(filePath);
+    Console.Clear();
     Console.WriteLine(@"
 
      _       __      __       __    __    _      __ 
@@ -25,6 +26,7 @@ class Reader {
               {
                   Console.Write(value + " ");
               }
+              Console.WriteLine();
               Console.WriteLine();
           }
         }

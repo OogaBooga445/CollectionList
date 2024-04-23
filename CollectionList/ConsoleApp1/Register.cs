@@ -12,7 +12,7 @@ namespace connect
         {
             var hasUpperChar = new Regex(@"[A-Z]+");
             var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
-                   Console.WriteLine(@"
+                    Console.WriteLine(@"
 
      _       __      __       __    __    _      __ 
     | |     / /___ _/ /______/ /_  / /   (_)____/ /_
