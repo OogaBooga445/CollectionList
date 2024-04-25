@@ -1,40 +1,45 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace connect
 {
-    class Sort
+    class SortByRating
     {
-        public static void SortCsv(string filePath, int columnToSortBy, bool ascending)
+        public static void SortAndSaveByRating(string filePath, bool ascending = true)
         {
-            // Read all lines from the CSV file
-            string[] lines = System.IO.File.ReadAllLines(filePath);
-
-            // Parse the CSV data into a list of string arrays
+            // Read the CSV file into a list of string arrays
             List<string[]> data = new List<string[]>();
-            foreach (string line in lines)
+            using (StreamReader reader = new StreamReader(filePath))
             {
-                string[] values = line.Split(',');
-                data.Add(values);
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    data.Add(line.Split(','));
+                }
             }
 
-            // Sort the data based on the specified column and order
-            data.Sort((x, y) =>
+            // Sort the data by rating (assuming rating is in the 7th column)
+            if (ascending)
             {
-                if (ascending)
-                    return x[columnToSortBy].CompareTo(y[columnToSortBy]);
-                else
-                    return y[columnToSortBy].CompareTo(x[columnToSortBy]);
-            });
+                data = data.OrderBy(row => row.Length > 7 ? row[7] : "").ToList();
+            }
+            else
+            {
+                data = data.OrderByDescending(row => row.Length > 7 ? row[7] : "").ToList();
+            }
 
-            // Write the sorted data back to the CSV file
-            using (System.IO.StreamWriter writer = new System.IO.StreamWriter(filePath))
+            // Rewrite the sorted data back to the CSV file
+            using (StreamWriter writer = new StreamWriter(filePath))
             {
                 foreach (string[] row in data)
                 {
                     writer.WriteLine(string.Join(",", row));
                 }
             }
+
+            Console.WriteLine($"Data sorted {(ascending ? "ascending" : "descending")} and saved successfully.");
         }
     }
 }

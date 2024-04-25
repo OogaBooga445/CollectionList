@@ -39,15 +39,6 @@ namespace connect
             // Splitting the input by comma to get individual values
             string[] values = input.Split(',');
 
-            // Validate Status input
-            if (!ValidateStatus(values[7]))
-            {
-                Console.WriteLine("Error: Invalid Status. Please enter one of the following phrases: Planned, Watching, Finished, On-Hold.");
-                // Recursively call the AddRecord method to prompt the user again
-                AddRecord(filePath);
-                return;
-            }
-
             // Check if the file already exists
             bool fileExists = File.Exists(filePath);
 
@@ -115,22 +106,9 @@ namespace connect
             {
                 Console.WriteLine($"Error: Invalid number of values. Expected {expectedValueCount} values.");
                 Console.WriteLine("Please enter data again.");
-                // Recursively call the AddRecord method to prompt the user again
+                // Recursively call the Main method to prompt the user again
                 AddRecord(null);
             }
-        }
-
-        static bool ValidateStatus(string status)
-        {
-            string[] validStatuses = { "Planned", "Watching", "Finished", "On-Hold" };
-            foreach (string validStatus in validStatuses)
-            {
-                if (status.Equals(validStatus, StringComparison.OrdinalIgnoreCase))
-                {
-                    return true;
-                }
-            }
-            return false;
         }
     }
 }

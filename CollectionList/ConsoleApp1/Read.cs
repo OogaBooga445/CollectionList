@@ -27,7 +27,6 @@ class Reader {
                   Console.Write(value + " ");
               }
               Console.WriteLine();
-              Console.WriteLine();
           }
         }
     }
