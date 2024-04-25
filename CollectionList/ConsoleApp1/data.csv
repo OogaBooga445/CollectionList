@@ -1,3 +1,3 @@
-B, 22, 20, Drama, 2002, 5, Watching
-A, Movie, 1:19:12, 1:19:12, Comedy, 2022, 8.9, Finished
-Title, Type, EP amount/M length,Time/EPs watched, Genre, Release date, Rating, Status
+Title,Type,EP amount/M length,Time/EPs watched,Genre,Release date,Rating,Status
+A,Movie,1:19:12,1:19:12,Comedy,2022,8.9,Finished
+B,Series,22,20,Drama,2002,5,Watching

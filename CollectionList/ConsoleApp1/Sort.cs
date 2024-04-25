@@ -9,10 +9,12 @@ namespace connect
     {
         public static void SortAndSaveByRating(string filePath, bool ascending = true)
         {
-            // Read the CSV file into a list of string arrays
+            // Read the CSV file into a list of string arrays, separating the header
             List<string[]> data = new List<string[]>();
+            string header = ""; // Store the header separately
             using (StreamReader reader = new StreamReader(filePath))
             {
+                header = reader.ReadLine(); // Read and store the header
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
@@ -30,16 +32,17 @@ namespace connect
                 data = data.OrderByDescending(row => row.Length > 7 ? row[7] : "").ToList();
             }
 
-            // Rewrite the sorted data back to the CSV file
+            // Rewrite the sorted data back to the CSV file, including the header
             using (StreamWriter writer = new StreamWriter(filePath))
             {
+                writer.WriteLine(header); // Write the header first
                 foreach (string[] row in data)
                 {
                     writer.WriteLine(string.Join(",", row));
                 }
             }
 
-            Console.WriteLine($"Data sorted {(ascending ? "ascending" : "descending")} and saved successfully.");
+            Console.WriteLine($"Data sorted by {(ascending ? "ascending" : "descending")} order and saved successfully.");
         }
     }
 }
