@@ -14,6 +14,37 @@ namespace connect
                 return;
             }
 
+            using (StreamReader reader = new StreamReader(filePath))
+            {
+                // Read and display the column titles
+                string columnTitles = reader.ReadLine();
+                Console.WriteLine(columnTitles);
+                Console.Clear();
+                Console.WriteLine(@"
+
+     _       __      __       __    __    _      __ 
+    | |     / /___ _/ /______/ /_  / /   (_)____/ /_
+    | | /| / / __ `/ __/ ___/ __ \/ /   / / ___/ __/
+    | |/ |/ / /_/ / /_/ /__/ / / / /___/ (__  ) /_  
+    |__/|__/\__,_/\__/\___/_/ /_/_____/_/____/\__/  
+            ");
+                Console.WriteLine();
+
+                // Display the data (excluding the first line)
+                while (!reader.EndOfStream)
+                {
+                    string line = reader.ReadLine();
+                    string[] values = line.Split(',');
+
+                    foreach (string value in values)
+                    {
+                        Console.Write(value + " ");
+                    }
+                    Console.WriteLine();
+                }
+            }
+
+            Console.WriteLine();
             Console.WriteLine("Enter the name of the movie or series you want to remove: ");
             string input = Console.ReadLine();
 
@@ -25,13 +56,16 @@ namespace connect
             using (StreamReader reader = new StreamReader(filePath))
             using (StreamWriter writer = new StreamWriter(tempFile))
             {
-                string line;
-                bool isFirstRow = true;
+                // Write the column titles to the temporary file
+                writer.WriteLine(reader.ReadLine());
 
-                while ((line = reader.ReadLine()) != null)
+                while (!reader.EndOfStream)
                 {
-                    // If it's the first row or the first column value doesn't match the input, keep the row
-                    if (isFirstRow || line.Split(',')[0].Trim() != input)
+                    string line = reader.ReadLine();
+                    string[] values = line.Split(',');
+
+                    // If the first column value doesn't match the input, keep the row
+                    if (values[0].Trim() != input)
                     {
                         writer.WriteLine(line); // Write the line to the temporary file
                     }
@@ -39,8 +73,6 @@ namespace connect
                     {
                         found = true; // Record found and removed
                     }
-
-                    isFirstRow = false;
                 }
             }
 

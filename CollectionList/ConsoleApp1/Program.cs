@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Text;
 using connect;
 
 namespace connect
@@ -20,12 +21,13 @@ namespace connect
 
       // Add.AddRecord(filePath);
       // Reader.Read();
-      // Remove.RemoveRecord(filePath);
+      //Remove.RemoveRecord(filePath);
       // Reader.Read();
-      // SortByRating.SortAndSaveByRating(filePath);
+      //SortByRating.SortAndSaveByRating(filePath, ascending: false); // lielakais augsa
       // Reader.Read();
-      SortByRating.SortAndSaveByRating(filePath);
+      //SortByRating.SortAndSaveByRating(filePath); //mazakais augsa
       // Reader.Read();
+      Edit.EditRecord(filePath);
     } 
   }
 }
