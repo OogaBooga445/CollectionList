@@ -11,13 +11,6 @@ namespace connect
 
       //  Registry.Register();
       //  Log_in.Login();
-      // Editor.Edit();
-
-      // bool ascendingOrder = false; // Change this to true or false as needed
-            
-      // Sort.SortCsv(filePath, 1, ascendingOrder);
-      // Console.WriteLine($"CSV file sorted in {(ascendingOrder ? "ascending" : "descending")} order by the second column.");
-
 
       // Add.AddRecord(filePath);
       // Reader.Read();
@@ -27,7 +20,11 @@ namespace connect
       // Reader.Read();
       //SortByRating.SortAndSaveByRating(filePath); //mazakais augsa
       // Reader.Read();
-      Edit.EditRecord(filePath);
+      //Edit.EditRecord(filePath);
+      //SortByTitle.SortAndSaveByTitle(filePath, ascending: false);
+      // Reader.Read();
+      SortByTitle.SortAndSaveByTitle(filePath);
+      // Reader.Read();
     } 
   }
 }
