@@ -21,9 +21,9 @@ namespace connect
       //SortByRating.SortAndSaveByRating(filePath); //mazakais augsa
       // Reader.Read();
       //Edit.EditRecord(filePath);
-      //SortByTitle.SortAndSaveByTitle(filePath, ascending: false);
+      //SortByTitle.SortAndSaveByTitle(filePath, ascending: false); // Z-A skatoties no augsas
       // Reader.Read();
-      SortByTitle.SortAndSaveByTitle(filePath);
+      //SortByTitle.SortAndSaveByTitle(filePath); // A-Z skatoties no augsas
       // Reader.Read();
     } 
   }

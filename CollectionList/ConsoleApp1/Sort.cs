@@ -66,51 +66,47 @@ namespace connect
     {
 public static void SortAndSaveByTitle(string filePath, bool ascending = true)
 {
-    // Check if the file exists
-    if (!File.Exists(filePath))
+    try
     {
-        Console.WriteLine($"File '{filePath}' does not exist.");
-        return;
-    }
-
-    // Read the CSV file into a list of string arrays, separating the header
-    List<string[]> data = new List<string[]>();
-    string header = ""; // Store the header separately
-    using (StreamReader reader = new StreamReader(filePath))
-    {
-        header = reader.ReadLine(); // Read and store the header
-        string line;
-        while ((line = reader.ReadLine()) != null)
+        // Check if the file exists
+        if (!File.Exists(filePath))
         {
-            data.Add(line.Split(','));
+            Console.WriteLine($"File '{filePath}' does not exist.");
+            return;
         }
-    }
 
-    // Separate the header row from the data for sorting
-    string[] headerRow = data[0];
-    data.RemoveAt(0);
-
-    // Sort the data by title
-    if (ascending)
-    {
-        data = data.OrderBy(row => row.Length > 0 ? row[0] : "").ToList();
-    }
-    else
-    {
-        data = data.OrderByDescending(row => row.Length > 0 ? row[0] : "").ToList();
-    }
-
-    // Rewrite the sorted data back to the CSV file, including the header
-    using (StreamWriter writer = new StreamWriter(filePath))
-    {
-        writer.WriteLine(header); // Write the header first
-        foreach (string[] row in data)
+        // Read the CSV file into a list of string arrays, separating the header
+        List<string[]> data = new List<string[]>();
+        string header;
+        using (StreamReader reader = new StreamReader(filePath))
         {
-            writer.WriteLine(string.Join(",", row));
+            header = reader.ReadLine(); // Read and store the header
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                data.Add(line.Split(','));
+            }
         }
-    }
 
-    Console.WriteLine($"Data sorted by title in {(ascending ? "ascending" : "descending")} order and saved successfully.");
+        // Sort the data by title
+        data = ascending ? data.OrderBy(row => row.FirstOrDefault()).ToList() : data.OrderByDescending(row => row.FirstOrDefault()).ToList();
+
+        // Rewrite the sorted data back to the CSV file, including the header
+        using (StreamWriter writer = new StreamWriter(filePath))
+        {
+            writer.WriteLine(header); // Write the header first
+            foreach (string[] row in data)
+            {
+                writer.WriteLine(string.Join(",", row));
+            }
+        }
+
+        Console.WriteLine($"Data sorted by title in {(ascending ? "ascending" : "descending")} order and saved successfully.");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"An error occurred: {ex.Message}");
+    }
 }
 
 
