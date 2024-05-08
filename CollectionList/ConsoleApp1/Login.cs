@@ -16,29 +16,29 @@ namespace connect
     |__/|__/\__,_/\__/\___/_/ /_/_____/_/____/\__/  
             ");
              Console.WriteLine();
-            Console.WriteLine("     Konts izveidots");
+            Console.WriteLine("     Account created");
             Console.WriteLine();
-            Console.WriteLine("     Ievadi datus lai ielogotos!");
+            Console.WriteLine("     Enter data to log in!");
             Console.WriteLine();
-            Console.Write("     Ievadi ID: ");
+            Console.Write("     Enter Username: ");
             string ConfirmUserId = Console.ReadLine();
-            Console.Write("     Ievadi Paroli: ");
+            Console.Write("     Enter Password: ");
             string ConfirmPassword = Console.ReadLine();
 
             while (true)
             {
                 if (Registry.userId == ConfirmUserId && Registry.password == ConfirmPassword)
                 {
-                    Console.WriteLine("     Esat veiksmīgi ielogojies!");
+                    Console.WriteLine("     Successfully logged in!");
                     break;
                 }
                 else
                 {
-                    Console.WriteLine("     Nepareizi ievadīti dati, Mēģini vēlreiz!");
+                    Console.WriteLine("     Incorrect data entered, Please try again!");
                     Console.WriteLine();
-                    Console.Write("     Ievadi ID: ");
+                    Console.Write("     Enter Username: ");
                     ConfirmUserId = Console.ReadLine();
-                    Console.Write("     Ievadi Paroli: ");
+                    Console.Write("     Enter Password: ");
                     ConfirmPassword = Console.ReadLine();
                 }
             }

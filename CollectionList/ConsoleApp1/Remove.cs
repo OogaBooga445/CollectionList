@@ -19,16 +19,6 @@ namespace connect
                 // Read and display the column titles
                 string columnTitles = reader.ReadLine();
                 Console.WriteLine(columnTitles);
-                Console.Clear();
-                Console.WriteLine(@"
-
-     _       __      __       __    __    _      __ 
-    | |     / /___ _/ /______/ /_  / /   (_)____/ /_
-    | | /| / / __ `/ __/ ___/ __ \/ /   / / ___/ __/
-    | |/ |/ / /_/ / /_/ /__/ / / / /___/ (__  ) /_  
-    |__/|__/\__,_/\__/\___/_/ /_/_____/_/____/\__/  
-            ");
-                Console.WriteLine();
 
                 // Display the data (excluding the first line)
                 while (!reader.EndOfStream)
@@ -78,7 +68,7 @@ namespace connect
 
             if (!found)
             {
-                Console.WriteLine("No matching record found.");
+                Console.WriteLine("No matching movie/series found.");
                 File.Delete(tempFile); // Delete the temporary file if no record was removed
                 return;
             }
@@ -87,7 +77,7 @@ namespace connect
             File.Delete(filePath);
             File.Move(tempFile, filePath);
 
-            Console.WriteLine("Record removed successfully.");
+            Console.WriteLine("Movie/Series succesfully removed.");
         }
     }
 }

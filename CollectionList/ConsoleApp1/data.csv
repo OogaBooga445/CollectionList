@@ -1,4 +1,6 @@
-Title,Type,EP amount/M length,Time/EPs watched,Genre,Release date,Rating,Status
-C,Series,2:02:02,1:59:10,Comedy,2002,3,Planned
-B,Movie,2:02:02,1:59:10,Comedy,2002,8,Planned
+Title,Type,EP amount/Movie length,EPs watched/Time watched,Genre,Release date,Rating,Status
 A,Movie,2:02:02,1:59:10,Comedy,2002,9,Planned
+B,Movie,2:02:02,1:59:10,Comedy,2002,8,Planned
+C,Series,01:00:00,01:00:00,Comedy,2002,9,Planned
+D,Movie,2:02:02,1:59:10,Comedy,2002,3,Planned
+Tit,Series,22,20,Drama,2020,8.6,Watching

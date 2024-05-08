@@ -11,8 +11,9 @@ namespace connect
         public static void Register()
         {
             var hasUpperChar = new Regex(@"[A-Z]+");
-            var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
-                    Console.WriteLine(@"
+            var hasNumberOrLetter = new Regex(@"^(?=.*[a-zA-Z0-9]).{7,16}$");
+            var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-,',""]");
+            Console.WriteLine(@"
 
      _       __      __       __    __    _      __ 
     | |     / /___ _/ /______/ /_  / /   (_)____/ /_
@@ -21,27 +22,27 @@ namespace connect
     |__/|__/\__,_/\__/\___/_/ /_/_____/_/____/\__/                                
             ");
             Console.WriteLine();
-            Console.Write("     Ievadi ID: ");
+            Console.WriteLine("     Welcome to the Watchlist!");
+            Console.WriteLine("     Please register!");
+            Console.Write("     Enter Username: ");
             userId = Console.ReadLine();
-            Console.Write("     Ievadi Paroli: ");
+            Console.Write("     Enter Password: ");
             password = Console.ReadLine();
 
             while (!hasUpperChar.IsMatch(userId))
             {
-                Console.WriteLine("     ID nesatur Lielos burtus, mēģiniet vēlreiz!");
-                Console.Write("     Ievadiet citu ID: ");
+                Console.WriteLine("     Username does not contain uppercase letters, please try again!");
+                Console.Write("     Enter a different ID: ");
                 userId = Console.ReadLine();
-                Console.Write("     Ievadiet Paroli: ");
+                Console.Write("     Enter Password: ");
                 password = Console.ReadLine();
             }
-            while (hasSymbols.IsMatch(password))
+            while (!hasNumberOrLetter.IsMatch(password) || hasSymbols.IsMatch(password))
             {
-                Console.WriteLine("     Parole nevar saturēt simbolus,mēģiniet vēlreiz!");
-                Console.Write("     Ievadiet citu paroli: ");
+                Console.WriteLine("     Password must contain  7 to 16 letters or numbers and cannot contain symbols, please try again!");
+                Console.Write("     Enter a different password: ");
                 password = Console.ReadLine();
             }
         }
     }
 }
-
-     
