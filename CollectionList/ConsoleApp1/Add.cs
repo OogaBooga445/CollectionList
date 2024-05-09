@@ -1,5 +1,3 @@
-using System;
-using System.IO;
 using System.Text.RegularExpressions;
 
 namespace connect
@@ -48,7 +46,8 @@ namespace connect
             // Append the validated data to the file
             using (StreamWriter writer = new StreamWriter(filePath, true))
             {
-                writer.WriteLine(input);
+
+                writer.WriteLine("\n" + input);
             }
 
             Console.WriteLine("Record added successfully.");
